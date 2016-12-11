@@ -41,24 +41,24 @@ class Output_Console : public OutputType
 //abstract class for all kinds of ciphers
 class CipherType{
 protected:
-	InputType * GetPlainText(){ return plain_text; }
-	InputType * GetKey(){ return ciph_key; }
-	OutputType * GetEncText() { return enc_text; }
-	OutputType *GetDecText(){ return dec_text; }
+	shared_ptr<InputType> GetPlainText(){ return plain_text; }
+	shared_ptr<InputType> GetKey(){ return ciph_key; }
+	shared_ptr<OutputType>  GetEncText() { return enc_text; }
+	shared_ptr<OutputType> GetDecText(){ return dec_text; }
 private:
-	InputType * plain_text;
-	InputType * ciph_key;
-	OutputType *enc_text;
-	OutputType *dec_text;
+	shared_ptr<InputType> plain_text;
+	shared_ptr<InputType> ciph_key;
+	shared_ptr<OutputType> enc_text;
+	shared_ptr<OutputType> dec_text;
 public:
 	virtual void GenerateCipherKey() = 0;
 	virtual void Encrypt() = 0;
 	virtual void Decrypt() = 0;
 	virtual void WriteKeyToFile(vector<char> k)=0;
-	void SetEncText(OutputType *e){ enc_text = e; }
-	void SetDecText(OutputType *d){ dec_text = d; }
-	void SetCiphKey(InputType *k){ ciph_key = k; }
-	void SetPlainText(InputType *p_t){ plain_text = p_t; }
+	void SetEncText(shared_ptr<OutputType> e){ enc_text = e; }
+	void SetDecText(shared_ptr<OutputType> d){ dec_text = d; }
+	void SetCiphKey(shared_ptr<InputType> k){ ciph_key = k; }
+	void SetPlainText(shared_ptr<InputType> p_t){ plain_text = p_t; }
 };
 
 //OTP
@@ -228,31 +228,31 @@ OutputType* GetOutputInstance(OutputTypes OTypes)
 
 
 int main()
-{
-	InputType *plain_text_otp = GetInputInstance(I_File);
-	OutputType *encrypted_text_otp = GetOutputInstance(O_File);
-	InputType *key_otp = GetInputInstance(I_File);
-	OutputType *decrypted_text_otp=GetOutputInstance(O_File);
+{	//shared_ptr from std
+	shared_ptr<InputType> plain_text_otp(GetInputInstance(I_File));
+	shared_ptr<OutputType> encrypted_text_otp(GetOutputInstance(O_File));
+	shared_ptr<InputType> key_otp(GetInputInstance(I_File));
+	shared_ptr<OutputType> decrypted_text_otp(GetOutputInstance(O_File));
 
-	InputType *plain_text_des = GetInputInstance(I_File);
-	OutputType *encrypted_text_des = GetOutputInstance(O_File);
-	InputType *key_des = GetInputInstance(I_File);
-	OutputType *decrypted_text_des = GetOutputInstance(O_File);
+	shared_ptr<InputType> plain_text_des(GetInputInstance(I_File));
+	shared_ptr<OutputType> encrypted_text_des(GetOutputInstance(O_File));
+	shared_ptr<InputType> key_des(GetInputInstance(I_File));
+	shared_ptr<OutputType> decrypted_text_des(GetOutputInstance(O_File));
 
-	InputType *plain_text_rc4 = GetInputInstance(I_File);
-	OutputType *encrypted_text_rc4 = GetOutputInstance(O_File);
-	InputType *key_rc4 = GetInputInstance(I_File);
-	OutputType *decrypted_text_rc4 = GetOutputInstance(O_File);
+	shared_ptr<InputType> plain_text_rc4(GetInputInstance(I_File));
+	shared_ptr<OutputType> encrypted_text_rc4(GetOutputInstance(O_File));
+	shared_ptr<InputType> key_rc4(GetInputInstance(I_File));
+	shared_ptr<OutputType> decrypted_text_rc4(GetOutputInstance(O_File));
 
-	InputType *plain_text_2des = GetInputInstance(I_File);
-	OutputType *encrypted_text_2des = GetOutputInstance(O_File);
-	InputType *key_2des = GetInputInstance(I_File);
-	OutputType *decrypted_text_2des = GetOutputInstance(O_File);
+	shared_ptr<InputType> plain_text_2des(GetInputInstance(I_File));
+	shared_ptr<OutputType> encrypted_text_2des(GetOutputInstance(O_File));
+	shared_ptr<InputType> key_2des(GetInputInstance(I_File));
+	shared_ptr<OutputType> decrypted_text_2des(GetOutputInstance(O_File));
 
-	InputType *plain_text_aes = GetInputInstance(I_File);
-	OutputType *encrypted_text_aes = GetOutputInstance(O_File);
-	InputType *key_aes = GetInputInstance(I_File);
-	OutputType *decrypted_text_aes = GetOutputInstance(O_File);
+	shared_ptr<InputType> plain_text_aes(GetInputInstance(I_File));
+	shared_ptr<OutputType> encrypted_text_aes(GetOutputInstance(O_File));
+	shared_ptr<InputType> key_aes(GetInputInstance(I_File));
+	shared_ptr<OutputType> decrypted_text_aes(GetOutputInstance(O_File));
 
 	
 	CipherType *OTP_Cipher = GetCipherInstance(OTP);
