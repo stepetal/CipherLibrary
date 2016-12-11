@@ -159,68 +159,58 @@ enum CipherTypes { AES, DES, Double_DES, RC4, OTP } CTypes;
 
 CipherType* GetCipherInstance(CipherTypes CTypes)
 {
+	CipherType *ob=NULL;
 	switch (CTypes){
 	case AES:{
-		AES_Cipher *ob1 = new AES_Cipher();
-		return ob1;
+		ob = new AES_Cipher();
 		break;
 	}
 	case DES:{
-		DES_Cipher *ob2 = new DES_Cipher();
-		return ob2;
+		ob = new DES_Cipher();
 		break;
 	}
 	case Double_DES:{
-		Double_DES_Cipher *ob3 = new Double_DES_Cipher();
-		return ob3;
+		ob = new Double_DES_Cipher();
 		break;
 	}
 	case RC4:{
-		RC4_Cipher *ob4 = new RC4_Cipher();
-		return ob4;
+		ob = new RC4_Cipher();
 		break;
 	}
 	case OTP:{
-		VernamCipher *ob5 = new VernamCipher();
-		return ob5;
-		break;
-	}
-	default:{
+		ob = new VernamCipher();
 		break;
 	}
 	}
+	return ob;
 }
 
 InputType* GetInputInstance(InputTypes ITypes)
 {
+	InputType *ob=NULL;
 	switch (ITypes){
 	case I_Console:{
-		InputType *ob1 = new Input_Console();
-		return ob1;
+		ob = new Input_Console();
 		break;
 	}
 	case I_File:{
-		InputType *ob2 = new Input_File();
-		return ob2;
-		break;
-	}
-	default:{
+		ob = new Input_File();
 		break;
 	}
 	}
+	return ob;
 }
 
 OutputType* GetOutputInstance(OutputTypes OTypes)
 {
+	OutputType *ob=NULL:
 	switch (OTypes){
 	case O_Console:{
-		OutputType *ob1 = new Output_Console();
-		return ob1;
+		ob = new Output_Console();
 		break;
 	}
 	case O_File:{
-		OutputType *ob2 = new Output_File();
-		return ob2;
+		ob = new Output_File();
 		break;
 	}
 	}
