@@ -82,11 +82,12 @@ protected:
 	void Encrypt();
 	void Decrypt();
 	void WriteKeyToFile(vector<char> k);
-public:
-	DES_Cipher(){ b_part = 0; }
 	void SetPaddingPart(int b_p){ b_part = b_p; }
 	int GetPaddingPart(){ return b_part; }
 	void SetKeySchedule(DES_key_schedule key_s){ key = key_s; }
+public:
+	DES_Cipher(){ b_part = 0; }
+	
 
 };
 
@@ -99,10 +100,11 @@ protected:
 	void Decrypt();
 	void GenerateCipherKey();
 	void WriteKeyToFile(vector<char> k);
-public:
-	RC4_Cipher(){};
 	void Swap(int &a, int &b);
 	void KeySchedule();
+public:
+	RC4_Cipher(){};
+	
 };
 
 
@@ -118,12 +120,13 @@ protected:
 	void GenerateCipherKey();
 	void Encrypt();
 	void Decrypt();
-public:
-	Double_DES_Cipher(){ b_part = 0; }
 	void SetPaddingPart(int b_p){ b_part = b_p; }
 	int GetPaddingPart(){ return b_part; }
 	void SetKeySchedule1(DES_key_schedule key_s){ key1 = key_s; }
 	void SetKeySchedule2(DES_key_schedule key_s){ key2 = key_s; }
+public:
+	Double_DES_Cipher(){ b_part = 0; }
+	
 };
 
 
