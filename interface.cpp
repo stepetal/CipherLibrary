@@ -1,3 +1,4 @@
+// Library for ciphers(AES,DES,OTP,2DES)
 //cipher_library.h
 //abstract class for input
 class InputType{
